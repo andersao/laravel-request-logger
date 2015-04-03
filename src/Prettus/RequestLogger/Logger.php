@@ -102,7 +102,7 @@ abstract class Logger implements Log {
      */
     public function log($level, $message, array $context = array())
     {
-        logger()->log($level,$level, $context);
+        logger()->log($level,$message, $context);
     }
 
     /**
