@@ -51,7 +51,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```php
 'request' => [
     'enabled' => true,
-    'format'  => '[{method}] {fullUrl} {ip} {port}'
+    'format'  => '{ip} {method} {url}'
 ],
 ```
 
@@ -60,7 +60,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```php
 'response' => [
     'enabled' => true,
-    'format'  => '[{status_code}] {protocol_version} {content}'
+    'format'  => '{ip} {method} {url} HTTP/{http_version} {status}'
 ]
 ```
 
@@ -85,9 +85,8 @@ In your `config/request-logger.php` file, you can change configuration for logge
 #### Reponse
 
 - {content}
-- {status_code}
-- {charset}
-- {protocol_version}
+- {status}
+- {http_version}
 - {is_cacheable}
 - {is_empty}
 - {is_client_error}
@@ -121,7 +120,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 
 ### Response Formats
 
-`[{status_code}] HTTP:{protocol_version} {content}`
+`[{status}] HTTP:{http_version} {content}`
 
 ```
 [2015-04-03 00:00:00] local.INFO: [200] HTTP:1.1 {"id":1,"name":"Anderson Andrade", "email":"contato@andersonandra.de"} ["RESPONSE"]

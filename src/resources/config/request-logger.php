@@ -28,7 +28,7 @@ return [
     */
     'request' => [
         'enabled' => true,
-        'format'  => '[{method}] {fullUrl} {ip} {port}'
+        'format'  => '{ip} {method} {url}'
     ],
 
     /*
@@ -39,6 +39,6 @@ return [
     */
     'response' => [
         'enabled' => true,
-        'format'  => '[{status_code}] {protocol_version} {content}'
+        'format'  => '{ip} {method} {url} HTTP/{http_version} {status}'
     ]
 ];

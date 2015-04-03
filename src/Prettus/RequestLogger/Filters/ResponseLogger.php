@@ -26,9 +26,8 @@ class ResponseLogger extends Logger
             $format = config('request-logger.response.format', "[{status_code}] {content}");
             $format = str_replace(array(
                 "{content}",
-                "{status_code}",
-                "{charset}",
-                "{protocol_version}",
+                "{status}",
+                "{http_version}",
                 "{is_cacheable}",
                 "{is_empty}",
                 "{is_client_error}",
@@ -51,7 +50,6 @@ class ResponseLogger extends Logger
             ), array(
                 $response->getContent(),
                 $response->getStatusCode(),
-                $response->getCharset(),
                 $response->getProtocolVersion(),
                 $response->isCacheable() ? "true" : "false",
                 $response->isEmpty() ? "true" : "false",
