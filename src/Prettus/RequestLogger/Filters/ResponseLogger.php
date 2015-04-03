@@ -37,6 +37,17 @@ class ResponseLogger extends Logger
                 "{is_ok}",
                 "{is_invalid}",
                 "{is_redirection}",
+                "{method}",
+                "{root}",
+                "{url}",
+                "{fullUrl}",
+                "{path}",
+                "{decodedPath}",
+                "{ip}",
+                "{format}",
+                "{scheme}",
+                "{port}",
+                "{query_string}"
             ), array(
                 $response->getContent(),
                 $response->getStatusCode(),
@@ -50,9 +61,20 @@ class ResponseLogger extends Logger
                 $response->isOk() ? "true" : "false",
                 $response->isInvalid() ? "true" : "false",
                 $response->isRedirection() ? "true" : "false",
+                $request->method(),
+                $request->root(),
+                $request->url(),
+                $request->fullUrl(),
+                $request->path(),
+                $request->decodedPath(),
+                $request->ip(),
+                $request->format(),
+                $request->getScheme(),
+                $request->getPort(),
+                $request->getQueryString()
             ), $format);
 
-            $this->info($format, [self::LOG_CONTEXT]);
+            $this->log( config('request-logger.logger.level', 'info') , $format, [self::LOG_CONTEXT ]);
         }
     }
 }

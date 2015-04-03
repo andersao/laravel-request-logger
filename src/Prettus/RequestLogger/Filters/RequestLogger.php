@@ -48,7 +48,7 @@ class RequestLogger extends Logger
                 $request->getQueryString()
             ), $format);
 
-            $this->info($format, [self::LOG_CONTEXT ]);
+            $this->log( config('request-logger.logger.level', 'info') , $format, [self::LOG_CONTEXT ]);
         }
     }
 }
