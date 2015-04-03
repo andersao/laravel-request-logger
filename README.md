@@ -87,14 +87,6 @@ In your `config/request-logger.php` file, you can change configuration for logge
 - {content}
 - {status}
 - {http_version}
-- {is_cacheable}
-- {is_empty}
-- {is_client_error}
-- {is_forbidden}
-- {is_not_found}
-- {is_ok}
-- {is_invalid}
-- {is_redirection}
 
 ## Examples
 
