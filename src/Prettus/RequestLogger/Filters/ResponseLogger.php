@@ -25,7 +25,10 @@ class ResponseLogger extends Logger
         {
             $message = config('request-logger.response.format', "[{status_code}] {content}");
             $message = $this->interpolate($message, $request, $response);
-            $this->log( config('request-logger.logger.level', 'info') , $message, [self::LOG_CONTEXT ]);
+            $this->log( config('request-logger.logger.level', 'info') , $message, [
+                self::LOG_CONTEXT,
+                $response->getStatusCode()
+            ]);
         }
     }
 
