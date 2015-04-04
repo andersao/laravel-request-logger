@@ -83,12 +83,17 @@ In your `config/request-logger.php` file, you can change configuration for logge
 - {scheme}
 - {port}
 - {query_string}
+- {remote_user}
+- {referrer}
+- {user_agent}
+- {date}
 
 *All the variables are available to Reponse*
 
 #### Reponse
 
 - {content}
+- {content_length}
 - {status}
 - {http_version}
 

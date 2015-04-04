@@ -28,7 +28,7 @@ return [
     */
     'request' => [
         'enabled' => true,
-        'format'  => '{ip} {method} {url}'
+        'format'  => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
     ],
 
     /*
@@ -39,6 +39,6 @@ return [
     */
     'response' => [
         'enabled' => true,
-        'format'  => '{ip} {method} {url} HTTP/{http_version} {status}'
+        'format'  => '{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}'
     ]
 ];

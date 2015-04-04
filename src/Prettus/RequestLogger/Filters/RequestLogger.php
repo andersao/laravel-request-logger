@@ -21,36 +21,54 @@ class RequestLogger extends Logger
     {
         if( config('request-logger.request.enabled', false) )
         {
-            $format = config('request-logger.request.format', "[{method}] {fullUrl} {ip}");
-            $format = str_replace(array(
-                "{method}",
-                "{root}",
-                "{url}",
-                "{fullUrl}",
-                "{path}",
-                "{decodedPath}",
-                "{ip}",
-                "{remote_addr}",
-                "{format}",
-                "{scheme}",
-                "{port}",
-                "{query_string}"
-            ),array(
-                $request->method(),
-                $request->root(),
-                $request->url(),
-                $request->fullUrl(),
-                $request->path(),
-                $request->decodedPath(),
-                $request->ip(),
-                $request->ip(),
-                $request->format(),
-                $request->getScheme(),
-                $request->getPort(),
-                $request->getQueryString()
-            ), $format);
-
-            $this->log( config('request-logger.logger.level', 'info') , $format, [self::LOG_CONTEXT ]);
+            $message = config('request-logger.request.format', "{method} {url}");
+            $message = $this->interpolate($message, $request);
+            $this->log( config('request-logger.logger.level', 'info') , $message, [self::LOG_CONTEXT ]);
         }
+    }
+
+    /**
+     * @param $text
+     * @param Request $request
+     * @return mixed
+     */
+    protected function interpolate($text, Request $request){
+
+        return str_replace(array(
+            "{method}",
+            "{root}",
+            "{url}",
+            "{fullUrl}",
+            "{path}",
+            "{decodedPath}",
+            "{ip}",
+            "{remote_addr}",
+            "{format}",
+            "{scheme}",
+            "{port}",
+            "{query_string}",
+            "{remote_user}",
+            "{user_agent}",
+            "{referrer}",
+            "{date}"
+        ),array(
+            $request->method(),
+            $request->root(),
+            $request->url(),
+            $request->fullUrl(),
+            $request->path(),
+            $request->decodedPath(),
+            $request->ip(),
+            $request->ip(),
+            $request->format(),
+            $request->getScheme(),
+            $request->getPort(),
+            $request->getQueryString(),
+            $request->getUser(),
+            $request->server('HTTP_USER_AGENT'),
+            $request->server('HTTP_REFERER'),
+            date('Y-m-d H:i:s'),
+        ), $text);
+
     }
 }
