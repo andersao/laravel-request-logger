@@ -90,10 +90,14 @@ class ResponseLogger extends Logger
      */
     protected function getContentLength(Response $response){
 
-        mkdir(storage_path("framework".DIRECTORY_SEPARATOR."temp"), 0777, true);
+        $path = storage_path("framework".DIRECTORY_SEPARATOR."temp");
+
+        if( !file_exists($path)){
+            mkdir($path, 0777, true);
+        }
 
         $content = $response->getContent();
-        $file    = storage_path("framework".DIRECTORY_SEPARATOR."temp").DIRECTORY_SEPARATOR."response-".time();
+        $file    = $path.DIRECTORY_SEPARATOR."response-".time();
         file_put_contents($file, $content);
         $content_length = filesize($file);
         unlink($file);
