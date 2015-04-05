@@ -42,32 +42,15 @@ php artisan vendor:publish --provider="Prettus\RequestLogger\Providers\LoggerSer
 
 In your `config/request-logger.php` file, you can change configuration for logger
 
-
-### Set Log Level
-
 ```php
-'logger' => [
-    'level' => 'info'
-],
-```
-
-### Request Logger
-
-```php
-'request' => [
-    'enabled' => true,
-    'format'  => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
-],
-```
-
-### Response Logger
-
-```php
-'response' => [
-    'enabled' => true,
-    'format'  => '{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}'
+ 'logger' => [
+    'enabled'   => true,
+    'handlers'  => [],
+    'level'     => 'info',
+    'format'    => 'common'
 ]
 ```
+
 
 ### Format Interpolation
 
@@ -90,22 +73,15 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {referrer}     | The page address (if any) by which the user agent to the current page |                                         |
 | {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
- 
-*All the variables are available to Reponse*
-
-#### Reponse
-
-| Format           | Description                     | Exemple         |
-|------------------|---------------------------------|-----------------|
 | {content}        | Get the response content.       | {json:response} |
 | {res} or {content-length} | Get the content length in bytes | 4863   |
 | {response-time}  | Response time in ms             | 231             |
 | {status}         | Http status code                | 200             |
 | {http-version}   | Http protocol version           |                 |
 
+
 ## Examples
 
-### Request Formats
 
 `{method} {full-url}` 
 
@@ -124,8 +100,6 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```
 [2015-04-03 00:00:00] local.INFO: GET http://prettus.local http://prettus.local/user/1 http://prettus.local/user/1?param=lorem user/1 user/1 192.168.10.1 html http 80 param=lorem ["REQUEST"]
 ```
-
-### Response Formats
 
 `[{status}] HTTP:{http-version} {content}`
 

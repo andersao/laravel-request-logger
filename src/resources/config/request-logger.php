@@ -18,29 +18,9 @@ return [
     |
     */
     'logger' => [
+        'enabled'   => true,
         'handlers'  => [],
-        'level'     => 'info'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Request
-    |--------------------------------------------------------------------------
-    |
-    */
-    'request' => [
-        'enabled' => true,
-        'format'  => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Response
-    |--------------------------------------------------------------------------
-    |
-    */
-    'response' => [
-        'enabled' => true,
-        'format'  => '{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}'
+        'level'     => 'info',
+        'format'    => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
     ]
 ];

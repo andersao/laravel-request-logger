@@ -40,7 +40,6 @@ class LoggerServiceProvider extends ServiceProvider {
             Benchmarking::end('application');
         });
 
-        app('router')->before('Prettus\\RequestLogger\\Filters\\RequestLogger');
         app('router')->after('Prettus\\RequestLogger\\Filters\\ResponseLogger');
     }
 
