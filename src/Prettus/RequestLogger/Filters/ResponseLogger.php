@@ -23,6 +23,7 @@ class ResponseLogger extends Logger
     public function __construct(RequestInterpolation $requestInterpolation, ResponseInterpolation $responseInterpolation){
         $this->requestInterpolation = $requestInterpolation;
         $this->responseInterpolation = $responseInterpolation;
+        parent::__construct();
     }
 
     /**

@@ -21,6 +21,7 @@ class RequestLogger extends Logger
 
     public function __construct(RequestInterpolation $requestInterpolation){
         $this->requestInterpolation = $requestInterpolation;
+        parent::__construct();
     }
 
     /**

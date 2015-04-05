@@ -13,11 +13,13 @@ return [
     | Logger
     |--------------------------------------------------------------------------
     |
-    | Acceptable: notice, info, debug, emergency, alert, critical, error, warning
+    | - handlers: Array of the Monolog\Handler\HandlerInterface
+    | - level: [notice, info, debug, emergency, alert, critical, error, warning]
     |
     */
     'logger' => [
-        'level' => 'info'
+        'handlers'  => [],
+        'level'     => 'info'
     ],
 
     /*

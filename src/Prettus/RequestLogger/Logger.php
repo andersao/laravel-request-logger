@@ -9,6 +9,40 @@ use Illuminate\Contracts\Logging\Log;
 abstract class Logger implements Log {
 
     /**
+     * @var \Monolog\Logger;
+     */
+    protected $monolog;
+
+    /**
+     *
+     */
+    public function __construct()
+    {
+        $this->monolog = app('log')->getMonolog();
+
+        if( $handlers = config('request-logger.logger.handlers') )
+        {
+            if( count($handlers) )
+            {
+                //Remove default laravel handler
+                $this->monolog->popHandler();
+
+                foreach($handlers as $handler)
+                {
+                    if( class_exists($handler) )
+                    {
+                        $this->monolog->pushHandler(app($handler));
+                    }
+                    else
+                    {
+                        throw new \Exception("Handler class {$handler} not exists");
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Log an alert message to the logs.
      *
      * @param  string $message
@@ -17,7 +51,7 @@ abstract class Logger implements Log {
      */
     public function alert($message, array $context = array())
     {
-        logger()->alert($message,$context);
+        $this->monolog->alert($message,$context);
     }
 
     /**
@@ -29,7 +63,7 @@ abstract class Logger implements Log {
      */
     public function critical($message, array $context = array())
     {
-        logger()->critical($message,$context);
+        $this->monolog->critical($message,$context);
     }
 
     /**
@@ -41,7 +75,7 @@ abstract class Logger implements Log {
      */
     public function error($message, array $context = array())
     {
-        logger()->error($message,$context);
+        $this->monolog->error($message,$context);
     }
 
     /**
@@ -53,7 +87,7 @@ abstract class Logger implements Log {
      */
     public function warning($message, array $context = array())
     {
-        logger()->warning($message,$context);
+        $this->monolog->warning($message,$context);
     }
 
     /**
@@ -65,7 +99,7 @@ abstract class Logger implements Log {
      */
     public function notice($message, array $context = array())
     {
-        logger()->notice($message,$context);
+        $this->monolog->notice($message,$context);
     }
 
     /**
@@ -77,7 +111,7 @@ abstract class Logger implements Log {
      */
     public function info($message, array $context = array())
     {
-        logger()->info($message,$context);
+        $this->monolog->info($message,$context);
     }
 
     /**
@@ -89,7 +123,7 @@ abstract class Logger implements Log {
      */
     public function debug($message, array $context = array())
     {
-        logger()->debug($message,$context);
+        $this->monolog->debug($message,$context);
     }
 
     /**
@@ -102,7 +136,7 @@ abstract class Logger implements Log {
      */
     public function log($level, $message, array $context = array())
     {
-        logger()->log($level,$message, $context);
+        $this->monolog->log($level,$message, $context);
     }
 
     /**
@@ -114,7 +148,7 @@ abstract class Logger implements Log {
      */
     public function useFiles($path, $level = 'debug')
     {
-        logger()->useFiles($path,$level);
+        $this->monolog->useFiles($path,$level);
     }
 
     /**
@@ -127,6 +161,6 @@ abstract class Logger implements Log {
      */
     public function useDailyFiles($path, $days = 0, $level = 'debug')
     {
-        logger()->useFiles($path,$days, $level);
+        $this->monolog->useDailyFiles($path,$days, $level);
     }
 }
