@@ -121,9 +121,13 @@ class ResponseInterpolation implements Interpolable {
     }
 
     /**
-     * @return int
+     * @return float|null
      */
     public function responseTime(){
-        return 0;
+        try{
+            return Benchmarking::duration('application');
+        }catch (\Exception $e){
+            return null;
+        }
     }
 }

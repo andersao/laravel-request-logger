@@ -1,6 +1,7 @@
 <?php namespace Prettus\RequestLogger\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Prettus\RequestLogger\Helpers\Benchmarking;
 
 /**
  * Class LoggerServiceProvider
@@ -31,6 +32,14 @@ class LoggerServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        app('router')->before(function(){
+            Benchmarking::start('application');
+        });
+
+        app('router')->after(function(){
+            Benchmarking::end('application');
+        });
+
         app('router')->before('Prettus\\RequestLogger\\Filters\\RequestLogger');
         app('router')->after('Prettus\\RequestLogger\\Filters\\ResponseLogger');
     }

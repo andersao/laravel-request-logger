@@ -103,6 +103,7 @@ class RequestInterpolation implements Interpolable {
 
                         return isset($formats[$option]) ? $formats[$option] : Carbon::now()->format($option);
 
+                    case "req":
                     case "header":
                         return $this->request->header(strtolower($option));
                     case "server":
