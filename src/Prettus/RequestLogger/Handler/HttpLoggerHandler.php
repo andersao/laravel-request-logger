@@ -1,19 +1,19 @@
 <?php namespace Prettus\RequestLogger\Handler;
 
 use Monolog\Handler\HandlerInterface;
-use Monolog\Handler\StreamHandler;
+use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 
 /**
  * Class HttpLoggerHandler
  * @package Prettus\RequestLogger\Handler
  */
-class HttpLoggerHandler extends StreamHandler implements HandlerInterface {
+class HttpLoggerHandler extends RotatingFileHandler implements HandlerInterface {
 
-    public function __construct($stream = null, $level = Logger::DEBUG, $bubble = true, $filePermission = null, $useLocking = false)
+    public function __construct($filename = null, $maxFiles = 0, $level = Logger::DEBUG, $bubble = true, $filePermission = null, $useLocking = false)
     {
-        $stream = !is_null($stream) ? $stream : storage_path("logs/http.log");
-        parent::__construct($stream, $level, $bubble, $filePermission, $useLocking);
+        $filename = !is_null($filename) ? $filename : config("request-logger.logger.file", storage_path("logs/http.log") );
+        parent::__construct($filename, $maxFiles, $level, $bubble, $filePermission, $useLocking);
     }
 
 }
