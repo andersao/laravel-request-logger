@@ -19,9 +19,9 @@ class RequestLogger extends Logger
      */
     public function filter(Request $request)
     {
-        if( config('request-logger.request.enabled', false) )
+        if( config('request-logger.request.enabled') )
         {
-            $message = config('request-logger.request.format', "{method} {url}");
+            $message = config('request-logger.request.format', "{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}");
             $message = $this->interpolate($message, $request);
             $this->log( config('request-logger.logger.level', 'info') , $message, [self::LOG_CONTEXT ]);
         }

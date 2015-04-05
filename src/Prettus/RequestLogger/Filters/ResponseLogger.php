@@ -21,9 +21,9 @@ class ResponseLogger extends Logger
      */
     public function filter(Request $request, Response $response)
     {
-        if( config('request-logger.response.enabled', false) )
+        if( config('request-logger.response.enabled') )
         {
-            $message = config('request-logger.response.format', "[{status_code}] {content}");
+            $message = config('request-logger.response.format', "{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}");
             $message = $this->interpolate($message, $request, $response);
             $this->log( config('request-logger.logger.level', 'info') , $message, [
                 self::LOG_CONTEXT,
