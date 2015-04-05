@@ -103,7 +103,7 @@ class ResponseInterpolation implements Interpolable {
     /**
      * @return int
      */
-    public function contentLength(){
+    public function getContentLength(){
 
         $path = storage_path("framework".DIRECTORY_SEPARATOR."temp");
 

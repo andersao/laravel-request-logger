@@ -21,6 +21,6 @@ return [
         'enabled'   => true,
         'handlers'  => [],
         'level'     => 'info',
-        'format'    => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
+        'format'    => 'common'
     ]
 ];

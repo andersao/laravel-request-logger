@@ -18,7 +18,7 @@ abstract class Logger implements Log {
      */
     public function __construct()
     {
-        $this->monolog = app('log')->getMonolog();
+        $this->monolog = clone app('log')->getMonolog();
 
         if( $handlers = config('request-logger.logger.handlers') )
         {
