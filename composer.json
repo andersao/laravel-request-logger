@@ -1,6 +1,6 @@
 {
   "name": "prettus/laravel-request-logger",
-  "description": "Laravel Request and Reponse Logger",
+  "description": "HTTP request logger middleware for Laravel",
   "keywords": ["laravel", "logger", "request", "response"],
   "license": "MIT",
   "authors": [

@@ -78,17 +78,17 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {method}       | Get the request method.                                               | PUT                                     |
 | {root}         | Get the root URL for the application.                                 | http://prettus.local                    |
 | {url}          | Get the URL (no query string) for the request.                        | http://prettus.local/users              |
-| {fullUrl}      | Get the full URL for the request.                                     | http://prettus.local/users?search=lorem |
+| {full-url}      | Get the full URL for the request.                                     | http://prettus.local/users?search=lorem |
 | {path}         | Get the current path info for the request.                            | /users                                  |
-| {decodedPath}  | Get the current encoded path info for the request.                    | /users                                  |
-| {ip}           | Returns the client IP address.                                        | 192.168.10.1                            |
+| {decoded-path}  | Get the current encoded path info for the request.                    | /users                                  |
+| {remote-addr} or {ip} | Returns the client IP address.                                        | 192.168.10.1                            |
 | {format}       | Gets the format associated with the mime type.                        | html                                    |
 | {scheme}       | Gets the request's scheme.                                            | http                                    |
 | {port}         | Returns the port on which the request is made.                        | 80                                      |
-| {query_string} | Generates the normalized query string for the Request.                | ?search=lorem                           |
-| {remote_user}  | Returns the user.                                                     |                                         |
+| {query-string} | Generates the normalized query string for the Request.                | ?search=lorem                           |
+| {remote-user}  | Returns the user.                                                     |                                         |
 | {referrer}     | The page address (if any) by which the user agent to the current page |                                         |
-| {user_agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
+| {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
  
 *All the variables are available to Reponse*
@@ -98,27 +98,28 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | Format           | Description                     | Exemple         |
 |------------------|---------------------------------|-----------------|
 | {content}        | Get the response content.       | {json:response} |
-| {content_length} | Get the content length in bytes | 4863            |
+| {res} or {content-length} | Get the content length in bytes | 4863   |
+| {response-time}  | Response time in ms             | 231             |
 | {status}         | Http status code                | 200             |
-| {http_version}   | Http protocol version           |                 |
+| {http-version}   | Http protocol version           |                 |
 
 ## Examples
 
 ### Request Formats
 
-`{method} {fullUrl}` 
+`{method} {full-url}` 
 
 ```
 [2015-04-03 00:00:00] local.INFO: GET http://prettus.local/user/1?param=lorem ["REQUEST"]
 ```
 
-`{method} {fullUrl} {ip} {port}` 
+`{method} {full-url} {remote-addr} {port}` 
 
 ```
 [2015-04-03 00:00:00] local.INFO: GET http://prettus.local/user/1?param=lorem 192.168.10.1 80 ["REQUEST"]
 ```
 
-`{method} {root} {url} {fullUrl} {path} {decodedPath} {ip} {format} {scheme} {port} {query_string}` 
+`{method} {root} {url} {full-url} {path} {decoded-path} {remote-addr} {format} {scheme} {port} {query-string}` 
 
 ```
 [2015-04-03 00:00:00] local.INFO: GET http://prettus.local http://prettus.local/user/1 http://prettus.local/user/1?param=lorem user/1 user/1 192.168.10.1 html http 80 param=lorem ["REQUEST"]
@@ -126,7 +127,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 
 ### Response Formats
 
-`[{status}] HTTP:{http_version} {content}`
+`[{status}] HTTP:{http-version} {content}`
 
 ```
 [2015-04-03 00:00:00] local.INFO: [200] HTTP:1.1 {"id":1,"name":"Anderson Andrade", "email":"contato@andersonandra.de"} ["RESPONSE"]
