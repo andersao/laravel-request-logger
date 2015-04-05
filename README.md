@@ -56,7 +56,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```php
 'request' => [
     'enabled' => true,
-    'format'  => '{ip} {method} {url}'
+    'format'  => '{ip} {remote_user} {date} {method} {url} {referrer} {user_agent}'
 ],
 ```
 
@@ -65,7 +65,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```php
 'response' => [
     'enabled' => true,
-    'format'  => '{ip} {method} {url} HTTP/{http_version} {status}'
+    'format'  => '{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}'
 ]
 ```
 
@@ -73,30 +73,32 @@ In your `config/request-logger.php` file, you can change configuration for logge
 
 #### Request
 
-- {method}
-- {root}
-- {url}
-- {fullUrl}
-- {path}
-- {decodedPath}
-- {ip}
-- {format}
-- {scheme}
-- {port}
-- {query_string}
-- {remote_user}
-- {referrer}
-- {user_agent}
-- {date}
-
+| Format    | Description | Exemple |
+|{method}   | Get the request method. | PUT |
+|{root}     | Get the root URL for the application.  | http://prettus.local |
+|{url}      | Get the URL (no query string) for the request. | http://prettus.local/users |
+|{fullUrl}  | Get the full URL for the request. | http://prettus.local/users?search=lorem |
+|{path}     | Get the current path info for the request. | /users |
+|{decodedPath}| Get the current encoded path info for the request. | /users |
+|{ip}       | Returns the client IP address. | 192.168.10.1 |
+|{format}   | Gets the format associated with the mime type. | html |
+|{scheme}   | Gets the request's scheme.| http |
+|{port}     | Returns the port on which the request is made. | 80 |
+|{query_string}| Generates the normalized query string for the Request. | ?search=lorem |
+|{remote_user}| Returns the user. | |
+|{referrer} | The page address (if any) by which the user agent to the current page | |
+|{user_agent}| Get user agent | Mozilla/5.0 (Windows NT 6.3; WOW64) |
+|{date}     | Current Date | 2015-04-05 14:00:00 |
+ 
 *All the variables are available to Reponse*
 
 #### Reponse
 
-- {content}
-- {content_length}
-- {status}
-- {http_version}
+| Format    | Description | Exemple |
+|{content}   | Get the response content. | {json:response} |
+|{content_length}   | Get the content length in bytes | 4863|
+|{status}   | Http status code | 200 |
+|{http_version} | Http protocol version | 1.1 |
 
 ## Examples
 
