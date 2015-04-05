@@ -148,7 +148,7 @@ abstract class Logger implements Log {
      */
     public function useFiles($path, $level = 'debug')
     {
-        $this->monolog->useFiles($path,$level);
+
     }
 
     /**
@@ -161,6 +161,6 @@ abstract class Logger implements Log {
      */
     public function useDailyFiles($path, $days = 0, $level = 'debug')
     {
-        $this->monolog->useDailyFiles($path,$days, $level);
+
     }
 }
