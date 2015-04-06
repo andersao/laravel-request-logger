@@ -68,7 +68,23 @@ class RequestInterpolation implements Interpolable {
             "referer"
         ],camel_case($variable));
 
-        $server_var = "HTTP_".strtoupper(str_replace("-","_", $variable));
+        $server_var = str_replace([
+            "ACCEPT",
+            "ACCEPT_CHARSET",
+            "ACCEPT_ENCODING",
+            "ACCEPT_LANGUAGE",
+            "HOST",
+            "REFERER",
+            "USER_AGENT",
+        ], [
+            "HTTP_ACCEPT",
+            "HTTP_ACCEPT_CHARSET",
+            "HTTP_ACCEPT_ENCODING",
+            "HTTP_ACCEPT_LANGUAGE",
+            "HTTP_HOST",
+            "HTTP_REFERER",
+            "HTTP_USER_AGENT"
+        ], strtoupper(str_replace("-","_", $variable)) );
 
         if( method_exists($this->request, $method) )
         {
@@ -113,7 +129,7 @@ class RequestInterpolation implements Interpolable {
                     case "server":
                         return $this->request->server($option);
                     default;
-                        return $line;
+                        return $raw;
                 }
             }
         }

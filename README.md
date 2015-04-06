@@ -90,6 +90,11 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {response-time}  | Response time in ms             | 231             |
 | {status}         | Http status code                | 200             |
 | {http-version}   | Http protocol version           | 1.1             |
+| {server[*KEY*]}   | $_SERVER Server and execution environment information (See more)[http://php.net/manual/reserved.variables.server.php]          |              |
+| {req[*HEADER*]}   | Request Header values |              |
+| {res[*HEADER*]}   | Response Header values |              |
+
+
 
 #### Default formats
 

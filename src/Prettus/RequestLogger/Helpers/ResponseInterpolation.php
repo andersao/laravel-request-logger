@@ -99,7 +99,7 @@ class ResponseInterpolation implements Interpolable {
                     case "res":
                         return $this->response->headers->get($option);
                     default;
-                        return $line;
+                        return $raw;
                 }
             }
         }
