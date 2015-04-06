@@ -82,7 +82,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {port}         | Returns the port on which the request is made.                        | 80                                      |
 | {query-string} | Generates the normalized query string for the Request.                | ?search=lorem                           |
 | {remote-user}  | Returns the user.                                                     |                                         |
-| {referrer}     | The page address (if any) by which the user agent to the current page |                                         |
+| {referer}      | The page address (if any) by which the user agent to the current page |                                         |
 | {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
 | {content}        | Get the response content.       | {json:response} |
@@ -95,7 +95,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 
 | Name      | Format                                                                                                                                |
 |-----------|---------------------------------------------------------------------------------------------------------------------------------------|
-| combined  | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referrer}" "{user-agent}"     |
+| combined  | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referer}" "{user-agent}"     |
 | common    | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}                                 |
 | dev       | {method} {url} {status} {response-time} ms - {content-length}                                                                         |
 | short     | {remote-addr} {remote-user} {method} {url} HTTP/{http-version} {status} {content-length} - {response-time} ms                         |

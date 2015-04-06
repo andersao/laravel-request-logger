@@ -57,22 +57,26 @@ class RequestInterpolation implements Interpolable {
             "scheme",
             "port",
             "queryString",
-            "remoteUser"
+            "remoteUser",
+            "referrer"
         ], [
             "ip",
             "getScheme",
             "getPort",
             "getQueryString",
-            "getUser"
+            "getUser",
+            "referer"
         ],camel_case($variable));
+
+        $server_var = "HTTP_".strtoupper(str_replace("-","_", $variable));
 
         if( method_exists($this->request, $method) )
         {
             return $this->request->$method();
         }
-        elseif( isset($_SERVER["HTTP_".strtoupper($variable)]) )
+        elseif( isset($_SERVER[$server_var]) )
         {
-            return $this->request->server("HTTP_".strtoupper($variable));
+            return $this->request->server($server_var);
         }
         else
         {
