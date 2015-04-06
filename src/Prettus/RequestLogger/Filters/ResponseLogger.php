@@ -1,7 +1,7 @@
 <?php namespace Prettus\RequestLogger\Filters;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\Response;
 use Prettus\RequestLogger\Helpers\RequestInterpolation;
 use Prettus\RequestLogger\Helpers\ResponseInterpolation;
 use Prettus\RequestLogger\Logger;
