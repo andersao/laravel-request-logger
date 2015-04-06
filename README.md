@@ -2,6 +2,8 @@
 
 Request and Response Logger for Laravel
 
+Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/morgan)
+
 [![Latest Stable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/stable.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![Total Downloads](https://poser.pugx.org/prettus/laravel-request-logger/downloads.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![Latest Unstable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/unstable.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![License](https://poser.pugx.org/prettus/laravel-request-logger/license.svg)](https://packagist.org/packages/prettus/laravel-request-logger)
 [![Analytics](https://ga-beacon.appspot.com/UA-61050740-1/laravel-request-logger/readme)](https://packagist.org/packages/prettus/laravel-request-logger)
 
@@ -45,16 +47,26 @@ In your `config/request-logger.php` file, you can change configuration for logge
 ```php
  'logger' => [
     'enabled'   => true,
-    'handlers'  => [],
+    'handlers'  => ['Prettus\RequestLogger\Handler\HttpLoggerHandler'],
+    'file'      => storage_path("logs/http.log"),
     'level'     => 'info',
     'format'    => 'common'
 ]
 ```
 
+| Property | Type       | Default Value                                         | Description |
+|----------|------------|-------------------------------------------------------|-------------|
+| enabled  | boolean    | true                                                  | Enable or disable log http |
+| handlers | array      | ['Prettus\RequestLogger\Handler\HttpLoggerHandler']   | Instance of the `Monolog\Handler\HandlerInterface`. (See more)[https://github.com/Seldaek/monolog#handlers] |
+| file     | string     | storage_path("logs/http.log")                         | If you are using `Prettus\RequestLogger\Handler\HttpLoggerHandler`, you can set the file will be saved walk logs |
+| level    | string     | info                                                  | Level logger write: [notice, info, debug, emergency, alert, critical, error, warning] |
+| format   | string     | common                                                | Format for the log record |
+
+
 
 ### Format Interpolation
 
-#### Request
+#### Variables
 
 | Format         | Description                                                           | Exemple                                 |
 |----------------|-----------------------------------------------------------------------|-----------------------------------------|
@@ -77,11 +89,20 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {res} or {content-length} | Get the content length in bytes | 4863   |
 | {response-time}  | Response time in ms             | 231             |
 | {status}         | Http status code                | 200             |
-| {http-version}   | Http protocol version           |                 |
+| {http-version}   | Http protocol version           | 1.1             |
+
+#### Default formats
+
+| Name      | Format                                                                                                                                |
+|-----------|---------------------------------------------------------------------------------------------------------------------------------------|
+| combined  | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referrer}" "{user-agent}"     |
+| common    | {remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}                                 |
+| dev       | {method} {url} {status} {response-time} ms - {content-length}                                                                         |
+| short     | {remote-addr} {remote-user} {method} {url} HTTP/{http-version} {status} {content-length} - {response-time} ms                         |
+| tiny      | {method} {url} {status} {content-length} - {response-time} ms                                                                         |
 
 
 ## Examples
-
 
 `{method} {full-url}` 
 
