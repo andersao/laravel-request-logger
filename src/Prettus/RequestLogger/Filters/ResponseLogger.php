@@ -14,8 +14,8 @@ class ResponseLogger extends Logger
      * @var array
      */
     protected $formats = [
-        "combined"  =>'{remote-addr} - {remote-user} [{date[clf]}] "{method} {url} HTTP/{http-version" {status} {content-length} "{referrer}" "{user-agent}"',
-        "common"    =>'{remote-addr} - {remote-user} [{date[clf]}] "{method} {url} HTTP/{http-version" {status} {content-length}',
+        "combined"  =>'{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length} "{referrer}" "{user-agent}"',
+        "common"    =>'{remote-addr} - {remote-user} [{date}] "{method} {url} HTTP/{http-version}" {status} {content-length}',
         "dev"       =>'{method} {url} {status} {response-time} ms - {content-length}',
         "short"     =>'{remote-addr} {remote-user} {method} {url} HTTP/{http-version} {status} {content-length} - {response-time} ms',
         "tiny"      =>'{method} {url} {status} {content-length} - {response-time} ms'
