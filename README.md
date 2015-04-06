@@ -14,14 +14,14 @@ Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/mor
 Add `prettus/laravel-request-logger` to the "require" section of your `composer.json` file.
 
 ```json
-	"prettus/laravel-request-logger": "dev-master"
+	"prettus/laravel-request-logger": "1.0.*"
 ```
 
 Run `composer update` to get the latest version of the package.
 
 or 
 
-Run `composer require prettus/laravel-request-logger dev-master` direct in your terminal
+Run `composer require prettus/laravel-request-logger` direct in your terminal
 
 ### Laravel
 
