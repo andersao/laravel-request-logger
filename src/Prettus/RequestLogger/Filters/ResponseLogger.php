@@ -45,11 +45,14 @@ class ResponseLogger extends Logger
     const LOG_CONTEXT = "RESPONSE";
 
     /**
-     *
+     * @param Request $request
+     * @param Response $response
      */
-    public function filter(Response $response)
+    public function filter(Request $request, Response $response)
     {
         $this->responseInterpolation->setResponse($response);
+        $this->responseInterpolation->setRequest($request);
+        $this->requestInterpolation->setRequest($request);
 
         if( config('request-logger.logger.enabled') )
         {

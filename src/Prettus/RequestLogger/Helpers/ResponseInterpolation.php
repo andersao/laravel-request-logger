@@ -21,13 +21,6 @@ class ResponseInterpolation implements Interpolable {
     protected $request = null;
 
     /**
-     * @param Request $request
-     */
-    public function __construct(Request $request){
-        $this->request  = $request;
-    }
-
-    /**
      * @param Response $response
      */
     public function setResponse($response)
