@@ -1,5 +1,7 @@
 <?php namespace Prettus\RequestLogger\Filters;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Prettus\RequestLogger\Helpers\RequestInterpolation;
 use Prettus\RequestLogger\Helpers\ResponseInterpolation;
 use Prettus\RequestLogger\Logger;
@@ -45,8 +47,10 @@ class ResponseLogger extends Logger
     /**
      *
      */
-    public function filter()
+    public function filter(Response $response)
     {
+        $this->responseInterpolation->setResponse($response);
+
         if( config('request-logger.logger.enabled') )
         {
             $message = config('request-logger.logger.format', "{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referrer} {user_agent}");

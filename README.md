@@ -76,7 +76,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {full-url}      | Get the full URL for the request.                                     | http://prettus.local/users?search=lorem |
 | {path}         | Get the current path info for the request.                            | /users                                  |
 | {decoded-path}  | Get the current encoded path info for the request.                    | /users                                  |
-| {remote-addr} or {ip} | Returns the client IP address.                                        | 192.168.10.1                            |
+| {remote-addr}  | Returns the client IP address.                                        | 192.168.10.1                            |
 | {format}       | Gets the format associated with the mime type.                        | html                                    |
 | {scheme}       | Gets the request's scheme.                                            | http                                    |
 | {port}         | Returns the port on which the request is made.                        | 80                                      |
@@ -86,7 +86,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
 | {content}        | Get the response content.       | {json:response} |
-| {res} or {content-length} | Get the content length in bytes | 4863   |
+| {content-length} | Get the content length in bytes | 4863   |
 | {response-time}  | Response time in ms             | 231             |
 | {status}         | Http status code                | 200             |
 | {http-version}   | Http protocol version           | 1.1             |

@@ -22,6 +22,13 @@ class RequestInterpolation implements Interpolable {
         $this->request = $request;
     }
 
+    /**
+     * @param Request $request
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
+    }
 
     /**
      * @param string $text
