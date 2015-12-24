@@ -10,11 +10,9 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0"
-  },
-  "require-dev": {
-    "illuminate/support": "5.0.*|~5.1",
-    "illuminate/http": "5.0.*|~5.1",
+    "php": ">=5.4.0",
+    "illuminate/support": "5.0.*|~5.1|~5.2",
+    "illuminate/http": "5.0.*|~5.1|~5.2",
     "monolog/monolog": "~1.11"
   },
   "autoload": {
@@ -25,5 +23,10 @@
   "config": {
     "preferred-install": "dist"
   },
-  "minimum-stability": "dev"
+  "extra": {
+    "branch-alias": {
+      "dev-develop": "1.1-dev"
+    }
+  },
+  "minimum-stability": "stable"
 }
