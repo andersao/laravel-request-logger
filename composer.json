@@ -6,9 +6,16 @@
   "authors": [
     {
       "name": "Anderson Andrade",
-      "email": "contato@andersonandra.de"
+      "email": "contato@andersonandra.de",
+      "role": "Developer"
     }
   ],
+  "support": {
+    "email": "contato@andersonandra.de",
+    "issues":"https://github.com/andersao/laravel-request-logger/issues",
+    "wiki":"https://github.com/andersao/laravel-request-logger",
+    "source":"https://github.com/andersao/laravel-request-logger"
+  },
   "require": {
     "php": ">=5.4.0",
     "illuminate/support": "5.0.*|~5.1|~5.2",
