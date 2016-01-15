@@ -27,18 +27,17 @@ class RequestInterpolation implements Interpolable {
      * @param string $text
      * @return string
      */
-    public function interpolate($text){
+    public function interpolate($text)
+    {
 
         $variables = explode(" ",$text);
 
-        foreach( $variables as $variable )
-        {
-            $output = [];
-            preg_match("/{\s*(.+?)\s*}(\r?\n)?/", $variable, $output);
-            if( isset($output[1]) )
-            {
-                $value = $this->resolveVariable($output[0], $output[1]);
-                $text = str_replace($output[0], $value, $text);
+        foreach( $variables as $variable ) {
+            $matches = [];
+            preg_match("/{\s*(.+?)\s*}(\r?\n)?/", $variable, $matches);
+            if( isset($matches[1]) ) {
+                $value = $this->resolveVariable($matches[0], $matches[1]);
+                $text = str_replace($matches[0], $value, $text);
             }
         }
 
@@ -86,33 +85,26 @@ class RequestInterpolation implements Interpolable {
             "HTTP_USER_AGENT"
         ], strtoupper(str_replace("-","_", $variable)) );
 
-        if( method_exists($this->request, $method) )
-        {
+        if( method_exists($this->request, $method) ) {
             return $this->request->$method();
-        }
-        elseif( isset($_SERVER[$server_var]) )
-        {
+        } elseif( isset($_SERVER[$server_var]) ) {
             return $this->request->server($server_var);
-        }
-        else
-        {
-            $output = [];
-            preg_match("/([-\w]{2,})(?:\[([^\]]+)\])?/", $variable, $output);
+        } else {
+            $matches = [];
+            preg_match("/([-\w]{2,})(?:\[([^\]]+)\])?/", $variable, $matches);
 
-            if( count($output) == 2 )
-            {
-                switch($output[0])
-                {
-                    case "date": $output[] = "clf"; break;
+            if( count($matches) == 2 ) {
+                switch($matches[0]) {
+                case "date":
+                    $matches[] = "clf";
+                    break;
                 }
             }
 
-            if( is_array($output) && count($output) == 3 )
-            {
-                list($line, $var, $option) = $output;
+            if( is_array($matches) && count($matches) == 3 ) {
+                list($line, $var, $option) = $matches;
 
-                switch(strtolower($var))
-                {
+                switch(strtolower($var)) {
                     case "date":
 
                         $formats = [
