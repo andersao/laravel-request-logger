@@ -58,14 +58,16 @@ class RequestInterpolation implements Interpolable {
             "port",
             "queryString",
             "remoteUser",
-            "referrer"
+            "referrer",
+            'body'
         ], [
             "ip",
             "getScheme",
             "getPort",
             "getQueryString",
             "getUser",
-            "referer"
+            "referer",
+            "getContent"
         ],camel_case($variable));
 
         $server_var = str_replace([
