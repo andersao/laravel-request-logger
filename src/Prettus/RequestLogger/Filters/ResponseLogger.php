@@ -34,6 +34,9 @@ class ResponseLogger extends Logger
     protected $responseInterpolation;
 
     public function __construct(RequestInterpolation $requestInterpolation, ResponseInterpolation $responseInterpolation){
+
+        print 'yaizaaa!';
+
         $this->requestInterpolation = $requestInterpolation;
         $this->responseInterpolation = $responseInterpolation;
         parent::__construct();
