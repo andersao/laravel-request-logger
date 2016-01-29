@@ -39,7 +39,7 @@ class ResponseLogger
      * @var ResponseInterpolation
      */
     protected $responseInterpolation;
-
+    
     /**
      * @var Logger
      */

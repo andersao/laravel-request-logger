@@ -1,40 +1,10 @@
 <?php namespace Prettus\RequestLogger\Helpers;
 
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Prettus\RequestLogger\Contracts\Interpolable;
-
 /**
  * Class ResponseInterpolation
  * @package Prettus\RequestLogger\Helpers
  */
-class ResponseInterpolation implements Interpolable {
-
-    /**
-     * @var Response
-     */
-    protected $response = null;
-
-    /**
-     * @var Request
-     */
-    protected $request = null;
-
-    /**
-     * @param Response $response
-     */
-    public function setResponse($response)
-    {
-        $this->response = $response;
-    }
-
-    /**
-     * @param Request $request
-     */
-    public function setRequest($request)
-    {
-        $this->request = $request;
-    }
+class ResponseInterpolation extends BaseInterpolation {
 
     /**
      * @param string $text
@@ -42,14 +12,13 @@ class ResponseInterpolation implements Interpolable {
      */
     public function interpolate($text)
     {
-
         $variables = explode(" ",$text);
 
         foreach( $variables as $variable ) {
             $matches = [];
             preg_match("/{\s*(.+?)\s*}(\r?\n)?/", $variable, $matches);
             if( isset($matches[1]) ) {
-                $value = $this->resolveVariable($matches[0], $matches[1]);
+                $value =  $this->escape($this->resolveVariable($matches[0], $matches[1]));
                 $text = str_replace($matches[0], $value, $text);
             }
         }

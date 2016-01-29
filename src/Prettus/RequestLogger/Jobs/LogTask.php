@@ -36,7 +36,7 @@ class LogTask extends Job implements SelfHandling, ShouldQueue
      * @return void
      */
     public function handle()
-    {
+    {        
         $requestLogger = app(\Prettus\RequestLogger\ResponseLogger::class);
         $requestLogger->log($this->request, $this->response);        
     }

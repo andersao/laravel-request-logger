@@ -34,7 +34,7 @@ class LoggerServiceProvider extends ServiceProvider
      * @return void
      */
     public function register()
-    {
+    {        
         app('router')->before(function(){
             Benchmarking::start('application');
         });
