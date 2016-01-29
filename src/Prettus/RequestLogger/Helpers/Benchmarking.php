@@ -4,7 +4,8 @@
  * Class Benchmarking
  * @package Prettus\RequestLogger\Helpers
  */
-class Benchmarking {
+class Benchmarking
+{
 
     /**
      * @var array
@@ -15,10 +16,11 @@ class Benchmarking {
      * @param $name
      * @return mixed
      */
-    public static function start($name){
+    public static function start($name)
+    {
         $start = microtime(true);
 
-        self::$timers[$name] = [
+        static::$timers[$name] = [
             'start'=>$start
         ];
 
@@ -30,21 +32,22 @@ class Benchmarking {
      * @return float
      * @throws \Exception
      */
-    public static function end($name){
+    public static function end($name)
+    {
 
         $end = microtime(true);
 
-        if( isset(self::$timers[$name]) && isset(self::$timers[$name]['start']) )
-        {
-            if( isset(self::$timers[$name]['duration']) ){
-                return self::$timers[$name]['duration'];
+        if( isset(static::$timers[$name]) && isset(static::$timers[$name]['start']) ) {
+
+            if( isset(static::$timers[$name]['duration']) ){
+                return static::$timers[$name]['duration'];
             }
 
-            $start = self::$timers[$name]['start'];
-            self::$timers[$name]['end'] = $end;
-            self::$timers[$name]['duration'] = $end - $start;
+            $start = static::$timers[$name]['start'];
+            static::$timers[$name]['end'] = $end;
+            static::$timers[$name]['duration'] = $end - $start;
 
-            return self::$timers[$name]['duration'];
+            return static::$timers[$name]['duration'];
         }
 
         throw new \Exception("Benchmarking '{$name}' not started");
@@ -55,7 +58,8 @@ class Benchmarking {
      * @return float
      * @throws \Exception
      */
-    public static function duration($name){
-        return self::end($name);
+    public static function duration($name)
+    {
+        return static::end($name);
     }
 }
