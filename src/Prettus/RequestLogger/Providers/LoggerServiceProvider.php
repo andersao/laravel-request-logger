@@ -44,9 +44,7 @@ class LoggerServiceProvider extends ServiceProvider
         });
 
         $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
-
         $kernel->prependMiddleware(\Prettus\RequestLogger\Middlewares\ResponseLoggerMiddleware::class);
-
     }
 
 }
