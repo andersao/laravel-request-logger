@@ -1,4 +1,6 @@
-<?php namespace Prettus\RequestLogger\Filters;
+<?php
+
+namespace Prettus\RequestLogger;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,8 +12,13 @@ use Prettus\RequestLogger\Logger;
  * Class Logger
  * @package Prettus\Logger\Request
  */
-class ResponseLogger extends Logger
+class ResponseLogger
 {
+    /**
+     *
+     */
+    const LOG_CONTEXT = "RESPONSE";
+
     /**
      * @var array
      */
@@ -32,36 +39,36 @@ class ResponseLogger extends Logger
      * @var ResponseInterpolation
      */
     protected $responseInterpolation;
+    
+    /**
+     * @var Logger
+     */
+    protected $logger;
 
-    public function __construct(RequestInterpolation $requestInterpolation, ResponseInterpolation $responseInterpolation){
+    public function __construct(Logger $logger, RequestInterpolation $requestInterpolation, ResponseInterpolation $responseInterpolation)
+    {
+        $this->logger = $logger;
         $this->requestInterpolation = $requestInterpolation;
         $this->responseInterpolation = $responseInterpolation;
-        parent::__construct();
     }
-
-    /**
-     *
-     */
-    const LOG_CONTEXT = "RESPONSE";
 
     /**
      * @param Request $request
      * @param Response $response
      */
-    public function filter(Request $request, Response $response)
+    public function log(Request $request, Response $response)
     {
         $this->responseInterpolation->setResponse($response);
         $this->responseInterpolation->setRequest($request);
         $this->requestInterpolation->setRequest($request);
 
-        if( config('request-logger.logger.enabled') )
-        {
-            $message = config('request-logger.logger.format', "{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referer} {user_agent}");
-            $message = isset($this->formats[$message]) ? $this->formats[$message] : $message;
-            $message = $this->responseInterpolation->interpolate($message);
+        if( config('request-logger.logger.enabled') ) {
+            $format = config('request-logger.logger.format', "{ip} {remote_user} {date} {method} {url} HTTP/{http_version} {status} {content_length} {referer} {user_agent}");
+            $format = array_get($this->formats, $format, $format);
+            $message = $this->responseInterpolation->interpolate($format);
             $message = $this->requestInterpolation->interpolate($message);
-            $this->log( config('request-logger.logger.level', 'info') , $message, [
-                self::LOG_CONTEXT
+            $this->logger->log( config('request-logger.logger.level', 'info') , $message, [
+                static::LOG_CONTEXT
             ]);
         }
     }
