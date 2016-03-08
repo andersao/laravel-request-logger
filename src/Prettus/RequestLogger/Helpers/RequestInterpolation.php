@@ -85,7 +85,7 @@ class RequestInterpolation extends BaseInterpolation {
                 case "date":
                     $matches[] = "clf";
                     break;
-                case "request-body":
+                case "request-content":
                     if($data = $this->request->all())
                         return json_encode($data);
                     else
