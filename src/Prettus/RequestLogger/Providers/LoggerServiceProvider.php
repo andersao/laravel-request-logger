@@ -31,7 +31,7 @@ class LoggerServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      *
-     * @return void
+     * @return void 
      */
     public function register()
     {        
