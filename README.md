@@ -11,10 +11,10 @@ Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/mor
 
 ### Composer
 
-Add `prettus/laravel-request-logger` to the "require" section of your `composer.json` file.
+Add `jmarcher/laravel-request-logger` to the "require" section of your `composer.json` file.
 
 ```json
-	"prettus/laravel-request-logger": "1.0.*"
+	"jmarcher/laravel-request-logger": "1.0.*"
 ```
 
 Run `composer update` to get the latest version of the package.
