@@ -1,4 +1,5 @@
 # Laravel Request Logger
+Editions by jmarcher in order to match Laravel 5.2 specifications.
 
 Request and Response Logger for Laravel
 
