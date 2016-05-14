@@ -86,6 +86,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {referer}      | The page address (if any) by which the user agent to the current page |                                         |
 | {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
+| {request-content}        | Get the request content if it exists.       | {json:response} |
 | {content}        | Get the response content.       | {json:response} |
 | {content-length} | Get the content length in bytes | 4863   |
 | {response-time}  | Response time in ms             | 231             |

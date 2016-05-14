@@ -86,6 +86,13 @@ class RequestInterpolation extends BaseInterpolation {
                     $matches[] = "clf";
                     break;
                 }
+                case "request-content":
+                    if($data = $this->request->all())
+                        return json_encode($data);
+                    else
+                        return "";
+                    break;
+                }
             }
 
             if( is_array($matches) && count($matches) == 3 ) {
