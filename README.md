@@ -29,10 +29,10 @@ Run `composer require prettus/laravel-request-logger` direct in your terminal
 In your `config/app.php` add `'Prettus\RequestLogger\Providers\LoggerServiceProvider'` to the end of the `providers` array:
 
 ```php
-'providers' => array(
+'providers' => [
     ...,
-    'Prettus\RequestLogger\Providers\LoggerServiceProvider',
-),
+    Prettus\RequestLogger\Providers\LoggerServiceProvider::class,
+,
 ```
 
 Publish Configuration
