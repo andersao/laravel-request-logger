@@ -25,5 +25,6 @@ return [
         'file'      => storage_path("logs/http.log"),
         'level'     => 'info',
         'format'    => 'common'
-    ]
+    ],
+    'exclude' => [],
 ];
