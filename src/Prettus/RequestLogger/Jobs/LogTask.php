@@ -2,42 +2,36 @@
 
 namespace Prettus\RequestLogger\Jobs;
 
-use App\Jobs\Job;
-use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
 
-class LogTask extends Job implements SelfHandling, ShouldQueue
+class LogTask implements ShouldQueue
 {
-    use InteractsWithQueue, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $request;
     protected $response;
 
     /**
-     * Create a new job instance.
-     *
-     * @param  Request  $request
-     * @param  Response $response
-     * @return void
+     * LogTask constructor.
+     * @param $request
+     * @param $response
      */
     public function __construct($request, $response)
     {
-        $this->request = $request;
+        $this->request  = $request;
         $this->response = $response;
     }
 
     /**
      * Execute the job.
-     *
-     * @param  Mailer  $mailer
-     * @return void
      */
     public function handle()
-    {        
+    {
         $requestLogger = app(\Prettus\RequestLogger\ResponseLogger::class);
-        $requestLogger->log($this->request, $this->response);        
+        $requestLogger->log($this->request, $this->response);
     }
 }
