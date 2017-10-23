@@ -4,17 +4,17 @@ Request and Response Logger for Laravel
 
 Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/morgan)
 
-[![Latest Stable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/stable.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![Total Downloads](https://poser.pugx.org/prettus/laravel-request-logger/downloads.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![Latest Unstable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/unstable.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![License](https://poser.pugx.org/prettus/laravel-request-logger/license.svg)](https://packagist.org/packages/prettus/laravel-request-logger)
+[![Latest Stable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/stable.svg)](https://packagist.org/packages/jmarcher/laravel-request-logger) [![Total Downloads](https://poser.pugx.org/prettus/laravel-request-logger/downloads.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![Latest Unstable Version](https://poser.pugx.org/prettus/laravel-request-logger/v/unstable.svg)](https://packagist.org/packages/prettus/laravel-request-logger) [![License](https://poser.pugx.org/prettus/laravel-request-logger/license.svg)](https://packagist.org/packages/prettus/laravel-request-logger)
 [![Analytics](https://ga-beacon.appspot.com/UA-61050740-1/laravel-request-logger/readme)](https://packagist.org/packages/prettus/laravel-request-logger)
 
 ## Installation
 
 ### Composer
 
-Add `prettus/laravel-request-logger` to the "require" section of your `composer.json` file.
+Add `jmarcher/laravel-request-logger` to the "require" section of your `composer.json` file.
 
 ```json
-	"prettus/laravel-request-logger": "1.0.*"
+	"jmarcher/laravel-request-logger": "1.0.*"
 ```
 
 Run `composer update` to get the latest version of the package.
@@ -28,10 +28,9 @@ Run `composer require prettus/laravel-request-logger` direct in your terminal
 In your `config/app.php` add `'Prettus\RequestLogger\Providers\LoggerServiceProvider'` to the end of the `providers` array:
 
 ```php
-'providers' => array(
-    ...,
-    'Prettus\RequestLogger\Providers\LoggerServiceProvider',
-),
+'providers' => [
+    Prettus\RequestLogger\Providers\LoggerServiceProvider::class,
+]
 ```
 
 Publish Configuration
@@ -85,6 +84,7 @@ In your `config/request-logger.php` file, you can change configuration for logge
 | {referer}      | The page address (if any) by which the user agent to the current page |                                         |
 | {user-agent}   | Get user agent                                                        | Mozilla/5.0 (Windows NT 6.3; WOW64)     |
 | {date}         | Current Date                                                          | 2015-04-05 14:00:00                     |
+| {request-content}        | Get the request content if it exists.       | {json:response} |
 | {content}        | Get the response content.       | {json:response} |
 | {content-length} | Get the content length in bytes | 4863   |
 | {response-time}  | Response time in ms             | 231             |
