@@ -81,7 +81,7 @@ class ResponseInterpolation extends BaseInterpolation {
         }
 
         $content = $this->response->getContent();
-        $file    = $path.DIRECTORY_SEPARATOR."response-".time();
+        $file    = $path.DIRECTORY_SEPARATOR."response-".md5(microtime());
         file_put_contents($file, $content);
         $content_length = filesize($file);
         unlink($file);
