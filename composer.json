@@ -18,8 +18,8 @@
   },
   "require": {
     "php": ">=5.4.0",
-    "illuminate/support": "5.0.*|~5.1|~5.2",
-    "illuminate/http": "5.0.*|~5.1|~5.2",
+    "illuminate/support": "~5.0",
+    "illuminate/http": "~5.0",
     "monolog/monolog": "~1.11"
   },
   "autoload": {
@@ -31,8 +31,13 @@
     "preferred-install": "dist"
   },
   "extra": {
+    "laravel": {
+      "providers": [
+        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider"
+      ]
+    },
     "branch-alias": {
-      "dev-develop": "1.1-dev"
+      "dev-develop": "1.2-dev"
     }
   },
   "minimum-stability": "stable"

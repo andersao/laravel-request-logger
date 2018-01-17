@@ -1,4 +1,6 @@
-<?php namespace Prettus\RequestLogger;
+<?php 
+
+namespace Prettus\RequestLogger;
 
 use Illuminate\Contracts\Logging\Log;
 
@@ -6,7 +8,8 @@ use Illuminate\Contracts\Logging\Log;
  * Class Logger
  * @package Prettus\Logger\Request
  */
-abstract class Logger implements Log {
+class Logger implements Log
+{
 
     /**
      * @var \Monolog\Logger;
@@ -20,22 +23,16 @@ abstract class Logger implements Log {
     {
         $this->monolog = clone app('log')->getMonolog();
 
-        if( $handlers = config('request-logger.logger.handlers') )
-        {
-            if( count($handlers) )
-            {
+        if( config('request-logger.logger.enabled') && $handlers = config('request-logger.logger.handlers') ) {
+            if( count($handlers) ) {
                 //Remove default laravel handler
                 $this->monolog->popHandler();
 
-                foreach($handlers as $handler)
-                {
-                    if( class_exists($handler) )
-                    {
+                foreach($handlers as $handler) {
+                    if( class_exists($handler) ) {
                         $this->monolog->pushHandler(app($handler));
-                    }
-                    else
-                    {
-                        throw new \Exception("Handler class {$handler} not exists");
+                    } else {
+                        throw new \Exception("Handler class [{$handler}] does not exist");
                     }
                 }
             }
@@ -51,7 +48,7 @@ abstract class Logger implements Log {
      */
     public function alert($message, array $context = array())
     {
-        $this->monolog->alert($message,$context);
+        $this->monolog->alert($message, $context);
     }
 
     /**
@@ -63,7 +60,7 @@ abstract class Logger implements Log {
      */
     public function critical($message, array $context = array())
     {
-        $this->monolog->critical($message,$context);
+        $this->monolog->critical($message, $context);
     }
 
     /**
@@ -75,7 +72,7 @@ abstract class Logger implements Log {
      */
     public function error($message, array $context = array())
     {
-        $this->monolog->error($message,$context);
+        $this->monolog->error($message, $context);
     }
 
     /**
@@ -87,7 +84,7 @@ abstract class Logger implements Log {
      */
     public function warning($message, array $context = array())
     {
-        $this->monolog->warning($message,$context);
+        $this->monolog->warning($message, $context);
     }
 
     /**
@@ -99,7 +96,7 @@ abstract class Logger implements Log {
      */
     public function notice($message, array $context = array())
     {
-        $this->monolog->notice($message,$context);
+        $this->monolog->notice($message, $context);
     }
 
     /**
@@ -111,7 +108,7 @@ abstract class Logger implements Log {
      */
     public function info($message, array $context = array())
     {
-        $this->monolog->info($message,$context);
+        $this->monolog->info($message, $context);
     }
 
     /**
@@ -123,7 +120,7 @@ abstract class Logger implements Log {
      */
     public function debug($message, array $context = array())
     {
-        $this->monolog->debug($message,$context);
+        $this->monolog->debug($message, $context);
     }
 
     /**
@@ -136,7 +133,7 @@ abstract class Logger implements Log {
      */
     public function log($level, $message, array $context = array())
     {
-        $this->monolog->log($level,$message, $context);
+        $this->monolog->log($level, $message, $context);
     }
 
     /**
