@@ -14,7 +14,7 @@ Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/mor
 Add `prettus/laravel-request-logger` to the "require" section of your `composer.json` file.
 
 ```json
-	"prettus/laravel-request-logger": "1.0.*"
+	"prettus/laravel-request-logger": "1.2.*"
 ```
 
 Run `composer update` to get the latest version of the package.
@@ -25,12 +25,12 @@ Run `composer require prettus/laravel-request-logger` direct in your terminal
 
 ### Laravel
 
-In your `config/app.php` add `'Prettus\RequestLogger\Providers\LoggerServiceProvider'` to the end of the `providers` array:
+In your `config/app.php` add `Prettus\RequestLogger\Providers\LoggerServiceProvider::class` to the end of the `providers` array:
 
 ```php
 'providers' => array(
     ...,
-    'Prettus\RequestLogger\Providers\LoggerServiceProvider',
+    Prettus\RequestLogger\Providers\LoggerServiceProvider::class,
 ),
 ```
 
