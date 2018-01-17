@@ -49,10 +49,10 @@ class LoggerServiceProvider extends ServiceProvider
 
             if(!$this->excluded($request)) {
 
-                if( version_compare($this->app->version(), "5.2.*", "<=") ) {
+                if( version_compare($this->app->version(), "5.2.99", "<=")) {
                     //Compatible with Laravel 5.1 and 5.2
                     $task = new LogTask51($request, $response);
-                }else if( version_compare($this->app->version(), "5.3.*", "<=") ){
+                }else if( version_compare($this->app->version(), "5.3.99", "<=") ){
                     //Compatible with Laravel 5.3
                     $task = new LogTask53($request, $response);
                 }else{
