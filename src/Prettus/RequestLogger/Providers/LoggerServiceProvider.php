@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 use Prettus\RequestLogger\Helpers\Benchmarking;
 use Prettus\RequestLogger\Jobs\LogTask;
+use Prettus\RequestLogger\Jobs\Compatibility\LogTask51;
+use Prettus\RequestLogger\Jobs\Compatibility\LogTask53;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 /**
@@ -46,7 +48,17 @@ class LoggerServiceProvider extends ServiceProvider
             Benchmarking::end('application');
 
             if(!$this->excluded($request)) {
-                $task = new LogTask($request, $response);
+
+                if( version_compare($this->app->version(), "5.2.*", "<=") ) {
+                    //Compatible with Laravel 5.1 and 5.2
+                    $task = new LogTask51($request, $response);
+                }else if( version_compare($this->app->version(), "5.3.*", "<=") ){
+                    //Compatible with Laravel 5.3
+                    $task = new LogTask53($request, $response);
+                }else{
+                    //Compatible with Laravel 5.4 or later
+                    $task = new LogTask($request, $response);
+                }
 
                 if($queueName = config('request-logger.queue')) {
                     $this->dispatch(is_string($queueName) ? $task->onQueue($queueName) : $task);
