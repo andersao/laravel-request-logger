@@ -4,6 +4,7 @@ namespace Prettus\RequestLogger\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Http\Events\RequestHandled;
 use Prettus\RequestLogger\Helpers\Benchmarking;
 use Prettus\RequestLogger\Jobs\LogTask;
 use Prettus\RequestLogger\Jobs\Compatibility\LogTask51;
@@ -42,22 +43,20 @@ class LoggerServiceProvider extends ServiceProvider
     public function register()
     {
         Benchmarking::start('application');
-
-        $this->app['events']->listen('kernel.handled', function ($request, $response) {
+        $this->app['events']->listen(RequestHandled::class, function (RequestHandled $event) {
 
             Benchmarking::end('application');
-
-            if(!$this->excluded($request)) {
-
+            if(!$this->excluded($event->request)) {
                 if( version_compare($this->app->version(), "5.2.99", "<=")) {
                     //Compatible with Laravel 5.1 and 5.2
-                    $task = new LogTask51($request, $response);
+                    $task = new LogTask51($event->request, $event->response);
                 }else if( version_compare($this->app->version(), "5.3.99", "<=") ){
                     //Compatible with Laravel 5.3
-                    $task = new LogTask53($request, $response);
+                    $task = new LogTask53($event->request, $event->response);
                 }else{
                     //Compatible with Laravel 5.4 or later
-                    $task = new LogTask($request, $response);
+                    $task = new LogTask($event->request, $event->response);
+
                 }
 
                 if($queueName = config('request-logger.queue')) {
