@@ -10,7 +10,7 @@ use Illuminate\Bus\Queueable;
 /**
  * Class LogTask53
  * @package Prettus\RequestLogger\Jobs\Compatibility
- * @author Anderson Andrade [contato@andersonandra.de]
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class LogTask53 implements ShouldQueue
 {

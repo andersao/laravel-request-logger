@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Prettus\RequestLogger;
 
@@ -7,6 +7,7 @@ use Illuminate\Contracts\Logging\Log;
 /**
  * Class Logger
  * @package Prettus\Logger\Request
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class Logger implements Log
 {

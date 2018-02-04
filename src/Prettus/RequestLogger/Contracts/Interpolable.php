@@ -3,6 +3,7 @@
 /**
  * Interface Interpolable
  * @package Prettus\RequestLogger\Contracts
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 interface Interpolable {
 

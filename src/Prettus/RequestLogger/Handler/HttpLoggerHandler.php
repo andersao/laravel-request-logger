@@ -7,6 +7,7 @@ use Monolog\Logger;
 /**
  * Class HttpLoggerHandler
  * @package Prettus\RequestLogger\Handler
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class HttpLoggerHandler extends RotatingFileHandler implements HandlerInterface {
 

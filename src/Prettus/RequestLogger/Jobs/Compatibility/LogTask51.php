@@ -11,7 +11,7 @@ use Illuminate\Bus\Queueable;
 /**
  * Class LogTask51
  * @package Prettus\RequestLogger\Jobs\Compatibility
- * @author Anderson Andrade [contato@andersonandra.de]
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class LogTask51 implements SelfHandling, ShouldQueue
 {

@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 /**
  * Class LoggerServiceProvider
  * @package Prettus\RequestLogger\Providers
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class LoggerServiceProvider extends ServiceProvider
 {

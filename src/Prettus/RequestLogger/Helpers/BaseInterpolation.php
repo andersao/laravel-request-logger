@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class BaseInterpolation
  * @package Prettus\RequestLogger\Helpers
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 abstract class BaseInterpolation implements Interpolable {
 
@@ -19,8 +20,8 @@ abstract class BaseInterpolation implements Interpolable {
     /**
      * @var Response
      */
-    protected $response;    
-    
+    protected $response;
+
     /**
      * @param Request $request
      */

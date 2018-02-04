@@ -5,6 +5,7 @@ use Carbon\Carbon;
 /**
  * Class RequestInterpolation
  * @package Prettus\RequestLogger\Helpers
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class RequestInterpolation extends BaseInterpolation {
 
@@ -112,7 +113,7 @@ class RequestInterpolation extends BaseInterpolation {
                 }
             }
         }
-        
+
         return $raw;
     }
 }

@@ -8,6 +8,11 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
+/**
+ * Class LogTask
+ * @package Prettus\RequestLogger\Jobs
+ * @author Anderson Andrade <contato@andersonandra.de>
+ */
 class LogTask implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;

@@ -3,6 +3,7 @@
 /**
  * Class ResponseInterpolation
  * @package Prettus\RequestLogger\Helpers
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class ResponseInterpolation extends BaseInterpolation {
 

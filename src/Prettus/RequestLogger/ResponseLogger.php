@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Prettus\RequestLogger\Helpers\RequestInterpolation;
 use Prettus\RequestLogger\Helpers\ResponseInterpolation;
-use Prettus\RequestLogger\Logger;
 
 /**
  * Class Logger
  * @package Prettus\Logger\Request
+ * @author Anderson Andrade <contato@andersonandra.de>
  */
 class ResponseLogger
 {
@@ -39,7 +39,7 @@ class ResponseLogger
      * @var ResponseInterpolation
      */
     protected $responseInterpolation;
-    
+
     /**
      * @var Logger
      */

@@ -6,15 +6,18 @@
   "authors": [
     {
       "name": "Anderson Andrade",
+      "homepage": "http://andersonandra.de",
       "email": "contato@andersonandra.de",
       "role": "Developer"
     }
   ],
+  "homepage": "http://andersao.github.io/laravel-request-logger",
   "support": {
     "email": "contato@andersonandra.de",
     "issues":"https://github.com/andersao/laravel-request-logger/issues",
     "wiki":"https://github.com/andersao/laravel-request-logger",
-    "source":"https://github.com/andersao/laravel-request-logger"
+    "source":"https://github.com/andersao/laravel-request-logger",
+    "docs": "http://andersao.github.io/laravel-request-logger"
   },
   "require": {
     "php": ">=5.4.0",
