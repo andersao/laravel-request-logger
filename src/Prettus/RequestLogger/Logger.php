@@ -1,8 +1,9 @@
-<?php
+<?php 
 
 namespace Prettus\RequestLogger;
 
 use Illuminate\Contracts\Logging\Log;
+use Prettus\RequestLogger\Providers\LoggerServiceProvider;
 
 /**
  * Class Logger
@@ -22,8 +23,11 @@ class Logger implements Log
      */
     public function __construct()
     {
-        $this->monolog = clone app('log')->getMonolog();
-
+        if(LoggerServiceProvider::isLumen()) {
+            $this->monolog = clone app('log');
+        }else{
+            $this->monolog = clone app('log')->getMonolog();
+        }
         if( config('request-logger.logger.enabled') && $handlers = config('request-logger.logger.handlers') ) {
             if( count($handlers) ) {
                 //Remove default laravel handler
