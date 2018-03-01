@@ -11,17 +11,17 @@ Insiperd by [Morgan - Node HTTP request logger](https://github.com/expressjs/mor
 
 ### Composer
 
-Add `prettus/laravel-request-logger` to the "require" section of your `composer.json` file.
+Add `pedrosoares/lumen-request-logger ` to the "require" section of your `composer.json` file.
 
 ```json
-	"prettus/laravel-request-logger": "1.2.*"
+	"pedrosoares/lumen-request-logger ": "2.0.*"
 ```
 
 Run `composer update` to get the latest version of the package.
 
 or 
 
-Run `composer require prettus/laravel-request-logger` direct in your terminal
+Run `composer require pedrosoares/lumen-request-logger` direct in your terminal
 
 ### Laravel
 
