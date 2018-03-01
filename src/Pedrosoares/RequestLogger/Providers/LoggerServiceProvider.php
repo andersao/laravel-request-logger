@@ -46,14 +46,14 @@ class LoggerServiceProvider extends LocalProvider {
 
         $event_handler = $this->app['events'];
 
-        if(class_exists("KernelHandled")) {
+        if(class_exists("Prettus\RequestLogger\Events\KernelHandled")) {
             $event_handler->listen(KernelHandled::class, function (KernelHandled $event) {
                 $request = $event->request;
                 $response = $event->response;
 
                 $this->onKernelHandled($request, $response);
             });
-        }else if(class_exists("RequestHandled")){
+        }else if(class_exists("Illuminate\Foundation\Http\Events\RequestHandled")){
             $event_handler->listen(RequestHandled::class, function (RequestHandled $event) {
                 $request = $event->request;
                 $response = $event->response;
