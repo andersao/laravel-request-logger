@@ -30,6 +30,8 @@ class LoggerServiceProvider extends LocalProvider {
             __DIR__ . '/../../../resources/config/request-logger.php' => config_path('request-logger.php')
         ]);
 
+        $this->app->configure('request-logger');
+
         $this->mergeConfigFrom(
             __DIR__ . '/../../../resources/config/request-logger.php', 'request-logger'
         );
