@@ -74,7 +74,8 @@ class RequestInterpolation extends BaseInterpolation {
         ], strtoupper(str_replace("-","_", $variable)) );
 
         if( method_exists($this->request, $method) ) {
-            return $this->request->$method();
+            $result = $this->request->$method();
+            return is_array($result) ? print_r($result, true):$result;
         } elseif( isset($_SERVER[$server_var]) ) {
             return $this->request->server($server_var);
         } else {
